@@ -1,0 +1,30 @@
+<div class="title" *ngIf="!start">
+<h2>Bienvenue ! Cliquez sur Démarrer pour commencer le jeu.</h2>
+<button type="button" class="btn btn-primary" (click)="play()">Démarrer</button>
+</div>
+<br>
+<div *ngIf="start">
+    <h3>Main non triée</h3>
+    <br>
+    <div class="flex-container">
+        <div class="card-group flex-item" *ngFor="let e of cards.randomCards">
+            <app-card color="{{e.color}}" symbol="{{e.symbol}}"></app-card>
+        </div>
+    </div>
+    <br>
+    <button [disabled]="displaySorted" type="button" class="btn btn-success" (click)="displaySortedHand()">Afficher
+        main triée</button>
+    <br>
+    <br>
+    <div *ngIf="displaySorted">
+        <h3>Main triée</h3>
+        <br>
+        <div class="flex-container">
+            <div class="card-group flex-item" *ngFor="let c of cards.sortedCards">
+                <app-card color="{{c.color}}" symbol="{{c.symbol}}"></app-card>
+            </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-warning" (click)="reloadCurrentPage()">Rejouer</button>
+    </div>
+</div>
